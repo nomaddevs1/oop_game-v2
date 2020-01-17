@@ -1,6 +1,3 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Game.js */
 
  class Game {
      constructor(){
@@ -17,6 +14,7 @@
 			new Phrase(`binoculars`),
 			new Phrase(`background`)
          ]
+         this.activePhrase = null
      }
     getRandomPhrase(){
         return this.currentPhrase = this.phrases[Math.floor(Math.random() * this.phrases.length)]
@@ -26,14 +24,21 @@
          if(this.currentPhrase.checkLetter(letter)){
              this.currentPhrase.showMatchedLetter(letter)
              this.checkForWin()
-  
+            
 
          }
          else this.removeLife()
-                    const markButton = letter => {
-     letter.disabled = true;
-     letter.className += "chosen"
- }
+
+        //  if(!this.currentPhrase.checkLetter(letter)){
+        //      letter.className += "wrong"
+        //  }
+         const markButton = letter => {
+             console.log(letter)
+            letter.disabled = true;
+            letter.className += "wrong"
+        }
+
+ 
      }
     removeLife(){
          this.missed++;
@@ -64,9 +69,9 @@
 		document.removeEventListener(`keydown`, keyEvent);
 	 }
 	startGame(){																						//sets the ramdom phrase, resets the lives and keys,
-        this.getRandomPhrase();	
-      			console.log(this.currentPhrase)															//adds the keyboard event listener
-		this.currentPhrase.addPhraseToDisplay();
+       
+        this.activePhrase = this.getRandomPhrase()														//adds the keyboard event listener
+		this.activePhrase.addPhraseToDisplay();
 		document.querySelector(`#game-over-message`).textContent = ``;
 		document.querySelectorAll(`img[src*=lost]`).forEach(live => live.src = `images/liveHeart.png`);
 		document.addEventListener(`keydown`, keyEvent);
