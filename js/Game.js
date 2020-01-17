@@ -1,3 +1,6 @@
+/* Treehouse FSJS Techdegree
+ * Project 4 - OOP Game App
+ * Game.js */
 
  class Game {
      constructor(){
@@ -20,7 +23,8 @@
         return this.currentPhrase = this.phrases[Math.floor(Math.random() * this.phrases.length)]
         
      }
-    handleInteraction(letter){
+    handleInteraction(letter, button){
+        console.log(button)
          if(this.currentPhrase.checkLetter(letter)){
              this.currentPhrase.showMatchedLetter(letter)
              this.checkForWin()
@@ -29,14 +33,12 @@
          }
          else this.removeLife()
 
-        //  if(!this.currentPhrase.checkLetter(letter)){
-        //      letter.className += "wrong"
-        //  }
-         const markButton = letter => {
-             console.log(letter)
-            letter.disabled = true;
-            letter.className += "wrong"
-        }
+         if(!this.currentPhrase.checkLetter(letter)){
+             button.disabled = true
+             button.classList.remove("chosen")
+             button.className += " wrong"
+         }
+       
 
  
      }
